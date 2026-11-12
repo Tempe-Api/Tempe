@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkAGI · AI API 中转站</title>
+    <title>Tempe · AI API 中转站</title>
     <!-- 引入 Tailwind CSS 与图标库 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,14 +23,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded bg-emerald-500 flex items-center justify-center text-[#0a0f0d] font-bold text-xl">L</div>
-                    <span class="text-white font-bold text-lg tracking-wide">LinkAGI <span class="text-gray-500 font-normal text-sm ml-1">/ API Starter</span></span>
+                    <div class="w-8 h-8 rounded bg-emerald-500 flex items-center justify-center text-[#0a0f0d] font-bold text-xl">T</div>
+                    <span class="text-white font-bold text-lg tracking-wide">Tempe <span class="text-gray-500 font-normal text-sm ml-1">/ API Starter</span></span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                     <a href="#pricing" class="hover:text-emerald-400 transition-colors">价格</a>
                     <a href="#connect" class="hover:text-emerald-400 transition-colors">接入</a>
                     <a href="#workflow" class="hover:text-emerald-400 transition-colors">工作流</a>
-                    <a href="https://github.com" target="_blank" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-github mr-1"></i> GitHub</a>
+                    <a href="https://github.com/Tempe-Api/Tempe" target="_blank" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-github mr-1"></i> GitHub</a>
                 </div>
                 <div class="flex items-center gap-4">
                     <a href="#connect" class="text-sm text-gray-300 hover:text-white transition-colors hidden sm:block">登录</a>
@@ -51,7 +51,7 @@
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-6">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        LinkAGI · AI API 中转站
+                        Tempe · AI API 中转站
                     </div>
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 glow-text">
                         选好模型，<br>按实际用量付费。
@@ -61,7 +61,7 @@
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#connect" class="bg-emerald-500 hover:bg-emerald-400 text-[#0a0f0d] px-6 py-3 rounded font-bold text-center transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]">
-                            注册 LinkAGI <i class="fa-solid fa-arrow-right ml-1 text-sm"></i>
+                            注册 Tempe <i class="fa-solid fa-arrow-right ml-1 text-sm"></i>
                         </a>
                         <a href="#pricing" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-3 rounded font-medium text-center transition-all">
                             先看模型与价格
@@ -134,7 +134,7 @@
             <!-- 提示信息 -->
             <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mb-8 text-sm text-emerald-300 flex items-start gap-3">
                 <i class="fa-solid fa-circle-info mt-0.5"></i>
-                <p>Codex 站内分组倍率：Sale 0.08 / Plus 0.15 / Pro 0.25。从实时模型广场选择模型和分组，查看输入、输出、缓存及服务等级的价格。</p>
+                <p>Tempe 站内分组倍率：Sale 0.08 / Plus 0.15 / Pro 0.25。从实时模型广场选择模型和分组，查看输入、输出、缓存及服务等级的价格。</p>
             </div>
 
             <!-- 价格卡片网格 -->
@@ -241,8 +241,8 @@
                         </div>
                     </div>
                     <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
-                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com/v1</code>
-                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com/v1')"><i class="fa-regular fa-copy"></i></button>
+                        <code class="text-emerald-400 text-sm font-mono" id="url-codex">https://api.tempe.com/v1</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.tempe.com/v1')"><i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
 
@@ -256,8 +256,8 @@
                         </div>
                     </div>
                     <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
-                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com/v1</code>
-                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com/v1')"><i class="fa-regular fa-copy"></i></button>
+                        <code class="text-emerald-400 text-sm font-mono" id="url-openai">https://api.tempe.com/v1</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.tempe.com/v1')"><i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
 
@@ -271,8 +271,8 @@
                         </div>
                     </div>
                     <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
-                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com</code>
-                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com')"><i class="fa-regular fa-copy"></i></button>
+                        <code class="text-emerald-400 text-sm font-mono" id="url-claude">https://api.tempe.com</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.tempe.com')"><i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
 
@@ -286,8 +286,8 @@
                         </div>
                     </div>
                     <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
-                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com</code>
-                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com')"><i class="fa-regular fa-copy"></i></button>
+                        <code class="text-emerald-400 text-sm font-mono" id="url-gemini">https://api.tempe.com</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.tempe.com')"><i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
             </div>
@@ -348,8 +348,8 @@
     <footer class="bg-[#050806] border-t border-white/5 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center text-[#0a0f0d] font-bold text-xs">L</div>
-                <span class="text-white font-bold">LinkAGI</span>
+                <div class="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center text-[#0a0f0d] font-bold text-xs">T</div>
+                <span class="text-white font-bold">Tempe</span>
             </div>
             <div class="flex gap-6 text-sm text-gray-500">
                 <a href="#" class="hover:text-white transition-colors">文档</a>
@@ -357,7 +357,7 @@
                 <a href="#" class="hover:text-white transition-colors">控制台</a>
                 <a href="#" class="hover:text-white transition-colors">联系支持</a>
             </div>
-            <p class="text-xs text-gray-600">© 2026 LinkAGI. 保留所有权利。</p>
+            <p class="text-xs text-gray-600">© 2026 Tempe. 保留所有权利。</p>
         </div>
     </footer>
 
