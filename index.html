@@ -1,15 +1,365 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <title>我的 API 中转站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkAGI · AI API 中转站</title>
+    <!-- 引入 Tailwind CSS 与图标库 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #2c3e50; }
+        /* 自定义一些细腻的渐变与发光效果 */
+        .glow-text { text-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
     </style>
 </head>
-<body>
-    <h1>选好模型，按实际用量付费</h1>
-    <p>这里将展示模型价格与接入指南。</p>
+<body class="bg-[#0a0f0d] text-gray-300 font-sans antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <!-- 顶部导航栏 -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0f0d]/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded bg-emerald-500 flex items-center justify-center text-[#0a0f0d] font-bold text-xl">L</div>
+                    <span class="text-white font-bold text-lg tracking-wide">LinkAGI <span class="text-gray-500 font-normal text-sm ml-1">/ API Starter</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#pricing" class="hover:text-emerald-400 transition-colors">价格</a>
+                    <a href="#connect" class="hover:text-emerald-400 transition-colors">接入</a>
+                    <a href="#workflow" class="hover:text-emerald-400 transition-colors">工作流</a>
+                    <a href="https://github.com" target="_blank" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-github mr-1"></i> GitHub</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#connect" class="text-sm text-gray-300 hover:text-white transition-colors hidden sm:block">登录</a>
+                    <a href="#connect" class="text-sm bg-emerald-500 hover:bg-emerald-400 text-[#0a0f0d] px-4 py-2 rounded font-semibold transition-all">免费注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉 Hero 区域 -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-grid-pattern">
+        <!-- 背景氛围光 -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- 左侧文案 -->
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        LinkAGI · AI API 中转站
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 glow-text">
+                        选好模型，<br>按实际用量付费。
+                    </h1>
+                    <p class="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
+                        人民币计费，输入、输出价格公开。为不同项目创建独立 API Key，每次请求用了多少 Token、扣了多少钱，都可以在控制台查看。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#connect" class="bg-emerald-500 hover:bg-emerald-400 text-[#0a0f0d] px-6 py-3 rounded font-bold text-center transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+                            注册 LinkAGI <i class="fa-solid fa-arrow-right ml-1 text-sm"></i>
+                        </a>
+                        <a href="#pricing" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-3 rounded font-medium text-center transition-all">
+                            先看模型与价格
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">
+                        想先试试？<a href="#" class="text-emerald-400 hover:underline">领取 5 元体验额度</a>。已有账号可直接<a href="#" class="text-emerald-400 hover:underline">进入控制台</a>。
+                    </p>
+                </div>
+
+                <!-- 右侧准备步骤卡片 -->
+                <div class="bg-[#111816] border border-white/5 rounded-2xl p-6 lg:p-8 shadow-2xl">
+                    <h3 class="text-white font-semibold mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-emerald-500"></i> 开始之前，准备这四项
+                    </h3>
+                    <div class="space-y-5">
+                        <!-- 步骤 1 -->
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm font-bold border border-emerald-500/20">01</div>
+                            <div>
+                                <h4 class="text-gray-200 font-medium text-sm">模型与分组</h4>
+                                <p class="text-xs text-gray-500 mt-1">从实时模型广场复制完整模型 ID。</p>
+                            </div>
+                        </div>
+                        <!-- 步骤 2 -->
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm font-bold border border-emerald-500/20">02</div>
+                            <div>
+                                <h4 class="text-gray-200 font-medium text-sm">独立 API Key</h4>
+                                <p class="text-xs text-gray-500 mt-1">在控制台创建，用于自己的客户端。</p>
+                            </div>
+                        </div>
+                        <!-- 步骤 3 -->
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm font-bold border border-emerald-500/20">03</div>
+                            <div>
+                                <h4 class="text-gray-200 font-medium text-sm">对应的 Base URL</h4>
+                                <p class="text-xs text-gray-500 mt-1">按下方的客户端说明选择地址。</p>
+                            </div>
+                        </div>
+                        <!-- 步骤 4 -->
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm font-bold border border-emerald-500/20">04</div>
+                            <div>
+                                <h4 class="text-gray-200 font-medium text-sm">一条短请求</h4>
+                                <p class="text-xs text-gray-500 mt-1">收到回复后，在日志中核对用量和扣费。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模型与分组计费区 -->
+    <section id="pricing" class="py-20 bg-[#0d1210] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <p class="text-emerald-500 font-mono text-sm tracking-wider mb-2">模型、分组与人民币计费</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">用什么模型，花多少钱，一起看。</h2>
+                    <p class="text-gray-400">输入、输出、缓存分别列价。选择分组后查看对应费用。</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="#" class="bg-emerald-500 hover:bg-emerald-400 text-[#0a0f0d] px-5 py-2.5 rounded font-medium text-sm transition-colors">打开实时模型与价格 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+                    <a href="#" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-2.5 rounded font-medium text-sm transition-colors">按自己的 Token 数估算</a>
+                </div>
+            </div>
+
+            <!-- 提示信息 -->
+            <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mb-8 text-sm text-emerald-300 flex items-start gap-3">
+                <i class="fa-solid fa-circle-info mt-0.5"></i>
+                <p>Codex 站内分组倍率：Sale 0.08 / Plus 0.15 / Pro 0.25。从实时模型广场选择模型和分组，查看输入、输出、缓存及服务等级的价格。</p>
+            </div>
+
+            <!-- 价格卡片网格 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 卡片 1 -->
+                <div class="bg-[#111816] border border-white/5 rounded-xl p-6 hover:border-emerald-500/30 transition-colors group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">GPT-4o</h3>
+                            <p class="text-xs text-gray-500">OpenAI · 通用模型</p>
+                        </div>
+                        <span class="bg-white/5 text-gray-300 text-xs px-2 py-1 rounded border border-white/10 group-hover:border-emerald-500/30">Plus 分组</span>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">输入价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.15 / 1M tokens</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">输出价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.60 / 1M tokens</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">缓存价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.075 / 1M tokens</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block w-full text-center py-2 rounded bg-white/5 hover:bg-emerald-500 hover:text-[#0a0f0d] text-sm text-gray-300 transition-all font-medium">查看详情与创建 Key</a>
+                </div>
+
+                <!-- 卡片 2 (高亮) -->
+                <div class="bg-[#111816] border border-emerald-500/40 rounded-xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-emerald-500 text-[#0a0f0d] text-[10px] font-bold px-2 py-0.5 rounded-bl">推荐</div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Claude 3.5 Sonnet</h3>
+                            <p class="text-xs text-gray-500">Anthropic · 编程首选</p>
+                        </div>
+                        <span class="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded border border-emerald-500/20">Pro 分组</span>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">输入价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.25 / 1M tokens</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">输出价格</span>
+                            <span class="text-gray-200 font-mono">¥ 1.25 / 1M tokens</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">缓存价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.125 / 1M tokens</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block w-full text-center py-2 rounded bg-emerald-500 hover:bg-emerald-400 text-[#0a0f0d] text-sm font-bold transition-all">查看详情与创建 Key</a>
+                </div>
+
+                <!-- 卡片 3 -->
+                <div class="bg-[#111816] border border-white/5 rounded-xl p-6 hover:border-emerald-500/30 transition-colors group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Gemini 1.5 Pro</h3>
+                            <p class="text-xs text-gray-500">Google · 长上下文</p>
+                        </div>
+                        <span class="bg-white/5 text-gray-300 text-xs px-2 py-1 rounded border border-white/10 group-hover:border-emerald-500/30">Sale 分组</span>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">输入价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.08 / 1M tokens</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">输出价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.32 / 1M tokens</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">缓存价格</span>
+                            <span class="text-gray-200 font-mono">¥ 0.04 / 1M tokens</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block w-full text-center py-2 rounded bg-white/5 hover:bg-emerald-500 hover:text-[#0a0f0d] text-sm text-gray-300 transition-all font-medium">查看详情与创建 Key</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户端接入区 -->
+    <section id="connect" class="py-20 bg-[#0a0f0d] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <p class="text-emerald-500 font-mono text-sm tracking-wider mb-2">01 / 找到你的入口</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">你准备接哪个客户端？</h2>
+                <p class="text-gray-400">复制地址，按教程填入自己的 Key 和模型名。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 客户端 1 -->
+                <div class="bg-[#111816] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded bg-blue-500/10 text-blue-400 flex items-center justify-center"><i class="fa-solid fa-terminal"></i></div>
+                        <div>
+                            <h3 class="text-white font-bold">Codex / Responses</h3>
+                            <p class="text-xs text-gray-500">自定义提供方使用 Responses 协议。</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
+                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com/v1</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com/v1')"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <!-- 客户端 2 -->
+                <div class="bg-[#111816] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded bg-purple-500/10 text-purple-400 flex items-center justify-center"><i class="fa-solid fa-robot"></i></div>
+                        <div>
+                            <h3 class="text-white font-bold">OpenAI-compatible 客户端</h3>
+                            <p class="text-xs text-gray-500">选择与客户端相匹配的接口类型。</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
+                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com/v1</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com/v1')"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <!-- 客户端 3 -->
+                <div class="bg-[#111816] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded bg-orange-500/10 text-orange-400 flex items-center justify-center"><i class="fa-solid fa-code"></i></div>
+                        <div>
+                            <h3 class="text-white font-bold">Claude Code</h3>
+                            <p class="text-xs text-gray-500">文档使用根地址，客户端再拼接路径。</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
+                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com')"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <!-- 客户端 4 -->
+                <div class="bg-[#111816] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded bg-cyan-500/10 text-cyan-400 flex items-center justify-center"><i class="fa-solid fa-gem"></i></div>
+                        <div>
+                            <h3 class="text-white font-bold">Gemini CLI</h3>
+                            <p class="text-xs text-gray-500">按文档选择 API Key 认证与模型。</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-lg p-3 flex items-center justify-between border border-white/5">
+                        <code class="text-emerald-400 text-sm font-mono">https://api.linktoagi.com</code>
+                        <button class="text-gray-500 hover:text-white transition-colors" onclick="navigator.clipboard.writeText('https://api.linktoagi.com')"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用流程区 -->
+    <section id="workflow" class="py-20 bg-[#0d1210] border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-emerald-500 font-mono text-sm tracking-wider mb-2">02 / 第一次使用</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">从注册到看见调用记录</h2>
+            </div>
+
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+                
+                <!-- 步骤 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-[#111816] text-emerald-400 font-bold text-sm shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#111816] p-5 rounded-xl border border-white/5">
+                        <h3 class="text-white font-bold mb-2">注册，准备调用额度</h3>
+                        <p class="text-sm text-gray-400">完成邮箱验证，可联系客服领取体验额度，也可在钱包充值。</p>
+                    </div>
+                </div>
+
+                <!-- 步骤 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-[#111816] text-emerald-400 font-bold text-sm shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">2</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#111816] p-5 rounded-xl border border-white/5">
+                        <h3 class="text-white font-bold mb-2">选模型，创建 Key</h3>
+                        <p class="text-sm text-gray-400">先看模型广场的价格、分组和客户端限制，再到 API 密钥创建对应分组的测试 Key。首次使用建议设置额度与有效期。</p>
+                    </div>
+                </div>
+
+                <!-- 步骤 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-[#111816] text-emerald-400 font-bold text-sm shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">3</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#111816] p-5 rounded-xl border border-white/5">
+                        <h3 class="text-white font-bold mb-2">填入客户端，发送短请求</h3>
+                        <p class="text-sm text-gray-400">选择上方对应教程，填入地址、Key 和完整模型名。先让模型回复一句简短的话，暂时关闭自动循环与批量任务。</p>
+                    </div>
+                </div>
+
+                <!-- 步骤 4 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-[#111816] text-emerald-400 font-bold text-sm shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">4</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#111816] p-5 rounded-xl border border-white/5">
+                        <h3 class="text-white font-bold mb-2">在日志里看结果</h3>
+                        <p class="text-sm text-gray-400">打开使用日志，按调用时间核对模型、Token、响应状态和实际扣费。再用一个小任务评估是否适合继续使用。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-[#050806] border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center text-[#0a0f0d] font-bold text-xs">L</div>
+                <span class="text-white font-bold">LinkAGI</span>
+            </div>
+            <div class="flex gap-6 text-sm text-gray-500">
+                <a href="#" class="hover:text-white transition-colors">文档</a>
+                <a href="#" class="hover:text-white transition-colors">模型广场</a>
+                <a href="#" class="hover:text-white transition-colors">控制台</a>
+                <a href="#" class="hover:text-white transition-colors">联系支持</a>
+            </div>
+            <p class="text-xs text-gray-600">© 2026 LinkAGI. 保留所有权利。</p>
+        </div>
+    </footer>
+
 </body>
 </html>
